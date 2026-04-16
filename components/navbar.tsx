@@ -65,10 +65,11 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="relative text-white hover:text-[#98CA3F] hover:bg-white/5"
+            className="relative text-neon-green hover:text-neon-green hover:bg-white/5"
             onClick={openCart}
+            style={{ filter: 'drop-shadow(0 0 8px rgba(152,202,63,0.6))' }}
           >
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-6 w-6" />
             {itemCount > 0 && (
               <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full badge-neon-3d text-[#0A0A0A] text-xs font-bold flex items-center justify-center">
                 {itemCount}
