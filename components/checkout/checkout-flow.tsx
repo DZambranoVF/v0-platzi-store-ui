@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Check, ChevronLeft, Lock, ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/lib/cart-store'
@@ -250,8 +251,28 @@ export function CheckoutFlow() {
                   key={`${item.product.id}-${item.selectedColor}-${item.selectedSize}`}
                   className="flex gap-3"
                 >
-                  <div className="w-14 h-14 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                    <ShoppingBag className="h-6 w-6 text-muted-foreground" />
+                  <div className="w-14 h-14 bg-secondary rounded-lg overflow-hidden flex-shrink-0 relative">
+                    {item.product.colorImages?.[item.selectedColor] ? (
+                      <Image
+                        src={item.product.colorImages[item.selectedColor]}
+                        alt={item.product.name}
+                        fill
+                        className="object-cover"
+                        sizes="56px"
+                      />
+                    ) : item.product.images?.[0] ? (
+                      <Image
+                        src={item.product.images[0]}
+                        alt={item.product.name}
+                        fill
+                        className="object-cover"
+                        sizes="56px"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <ShoppingBag className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-white truncate">

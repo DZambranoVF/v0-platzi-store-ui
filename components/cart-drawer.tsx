@@ -55,9 +55,27 @@ export function CartDrawer() {
                   >
                     {/* Product Image */}
                     <div className="w-20 h-20 bg-[#1A1A1A] rounded-lg overflow-hidden flex-shrink-0 relative">
-                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                        <ShoppingBag className="h-8 w-8" />
-                      </div>
+                      {item.product.colorImages?.[item.selectedColor] ? (
+                        <Image
+                          src={item.product.colorImages[item.selectedColor]}
+                          alt={item.product.name}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
+                      ) : item.product.images?.[0] ? (
+                        <Image
+                          src={item.product.images[0]}
+                          alt={item.product.name}
+                          fill
+                          className="object-cover"
+                          sizes="80px"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                          <ShoppingBag className="h-8 w-8" />
+                        </div>
+                      )}
                     </div>
 
                     {/* Product Info */}
