@@ -36,16 +36,13 @@ export function HeroSection() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#98CA3F]/30 mb-8" style={{ boxShadow: '0 0 15px rgba(152,202,63,0.15), inset 0 0 10px rgba(152,202,63,0.05)' }}>
           <Sparkles className="h-4 w-4 text-neon-green" style={{ filter: 'drop-shadow(0 0 4px rgba(152,202,63,0.6))' }} />
-          <span className="text-sm font-semibold">
-            <span className="text-3d-white-subtitle">PLATZI</span>
-            <span className="text-neon-green ml-1">STORE</span>
-          </span>
+          <span className="text-sm text-neon-green font-semibold">Nueva colección disponible</span>
         </div>
 
         {/* Main Title */}
         <h1 className="font-[family-name:var(--font-space-grotesk)] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-4">
           <span className="text-3d-white">PLATZI</span>
-          <span className="block text-3d-white">STORE</span>
+          <span className="block text-neon-green">STORE</span>
         </h1>
 
         {/* Subtitle */}
