@@ -1,31 +1,29 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+  title: 'Platzi Store | Viste el conocimiento',
+  description: 'Tienda oficial de Platzi. Productos exclusivos para la comunidad tech más grande de Latinoamérica. Aprende. Construye. Úsalo.',
+  keywords: ['Platzi', 'tienda', 'merch', 'programación', 'tecnología', 'educación'],
+  authors: [{ name: 'Platzi' }],
+  openGraph: {
+    title: 'Platzi Store | Viste el conocimiento',
+    description: 'Tienda oficial de Platzi. Productos exclusivos para la comunidad tech.',
+    type: 'website',
   },
 }
 
@@ -35,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased">
+    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} bg-background`}>
+      <body className="font-sans antialiased min-h-screen">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
