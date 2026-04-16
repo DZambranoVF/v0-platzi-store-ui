@@ -39,6 +39,7 @@ export const products: Product[] = [
       '/images/hoodie-verde-frente.jpg',
       '/images/hoodie-verde-espalda.jpg',
       '/images/hoodie-negro-freddy.jpg',
+      '/images/hoodie-negro-frente-freddy.jpg',
     ],
     colorImages: {
       'Blanco': '/images/hoodie-blanca-frente.jpg',
