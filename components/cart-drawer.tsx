@@ -46,9 +46,10 @@ export function CartDrawer() {
           </div>
         ) : (
           <>
-            <ScrollArea className="flex-1 -mx-6 px-6">
-              <div className="space-y-4">
-                {items.map((item) => (
+            <div className="flex-1 overflow-hidden -mx-6 px-6">
+              <ScrollArea className="h-full pr-2">
+                <div className="space-y-4 pb-2">
+                  {items.map((item) => (
                   <div
                     key={`${item.product.id}-${item.selectedColor}-${item.selectedSize}`}
                     className="flex gap-4 p-4 bg-secondary rounded-lg"
@@ -133,11 +134,12 @@ export function CartDrawer() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
-            </ScrollArea>
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
 
-            <div className="pt-4 border-t border-border mt-4">
+            <div className="pt-4 border-t border-border mt-auto flex-shrink-0">
               {/* Subtotal */}
               <div className="flex items-center justify-between mb-4">
                 <span className="text-muted-foreground">Subtotal</span>
