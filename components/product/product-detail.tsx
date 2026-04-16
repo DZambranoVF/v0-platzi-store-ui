@@ -21,6 +21,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0)
   const { addItem, openCart } = useCartStore()
 
+  const handleColorSelect = (color: string) => {
+    setSelectedColor(color)
+    if (product.colorImages?.[color]) {
+      const idx = product.images.indexOf(product.colorImages[color])
+      if (idx !== -1) setSelectedImage(idx)
+    }
+  }
+
   const handleAddToCart = () => {
     addItem(product, selectedColor, selectedSize)
     openCart()
@@ -127,7 +135,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               {product.colors.map((color) => (
                 <button
                   key={color}
-                  onClick={() => setSelectedColor(color)}
+                  onClick={() => handleColorSelect(color)}
                   className={cn(
                     'w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center',
                     selectedColor === color
