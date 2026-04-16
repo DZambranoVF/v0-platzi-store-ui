@@ -26,11 +26,6 @@ export function Navbar() {
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo with Slogan */}
         <div className="flex flex-col gap-0.5">
-          {/* Slogan */}
-          <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
-            <span className="text-white">NUNCA PARES </span>
-            <span className="text-neon-green" style={{ textShadow: '0 0 8px rgba(152,202,63,0.6)' }}>DE COMPRAR</span>
-          </div>
           {/* Logo */}
           <Link 
             href="/" 
@@ -39,6 +34,11 @@ export function Navbar() {
             <span className="text-white">PLATZI</span>
             <span className="text-neon-green">STORE</span>
           </Link>
+          {/* Slogan */}
+          <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
+            <span className="text-white">NUNCA PARES </span>
+            <span className="text-neon-green" style={{ textShadow: '0 0 8px rgba(152,202,63,0.6)' }}>DE COMPRAR</span>
+          </div>
         </div>
 
         {/* Desktop Navigation */}
@@ -88,10 +88,6 @@ export function Navbar() {
             <SheetContent side="right" className="bg-[#0A0A0A] border-l border-border w-[280px]">
               <div className="flex flex-col gap-6 mt-8">
                 <div className="flex flex-col gap-0.5">
-                  <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
-                    <span className="text-white">NUNCA PARES </span>
-                    <span className="text-neon-green">DE COMPRAR</span>
-                  </div>
                   <Link 
                     href="/" 
                     className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight"
@@ -99,6 +95,10 @@ export function Navbar() {
                   >
                     <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
                   </Link>
+                  <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
+                    <span className="text-white">NUNCA PARES </span>
+                    <span className="text-neon-green">DE COMPRAR</span>
+                  </div>
                 </div>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
