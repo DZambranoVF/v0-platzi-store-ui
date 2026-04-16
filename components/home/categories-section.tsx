@@ -16,7 +16,7 @@ const categories = [
     description: 'Gorras, mochilas, termos y todo lo que necesitas',
     icon: Headphones,
     href: '/catalogo?category=accesorios',
-    color: '#FF2D78',
+    color: '#FF6B2C',
   },
   {
     id: 'oficina',

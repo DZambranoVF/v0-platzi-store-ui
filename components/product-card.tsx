@@ -28,9 +28,9 @@ export function ProductCard({ product }: ProductCardProps) {
       href={`/producto/${product.slug}`}
       className="group block"
     >
-      <div className="card-premium rounded-xl overflow-hidden border border-border">
+      <div className="card-premium rounded-xl overflow-hidden border border-transparent" style={{ boxShadow: '0 0 0 1px rgba(152,202,63,0.12), 0 0 24px rgba(152,202,63,0.08)' }}>
         {/* Image */}
-        <div className="relative aspect-square bg-gradient-to-br from-[#1A1A1A] to-[#111111] overflow-hidden">
+        <div className="relative aspect-square bg-gradient-to-br from-[#181818] to-[#0f0f0f] overflow-hidden" style={{ boxShadow: 'inset 0 0 40px rgba(152,202,63,0.04)' }}>
           {/* Placeholder with icon */}
           <div className="absolute inset-0 flex items-center justify-center">
             <ShoppingBag className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform duration-300" />
@@ -68,8 +68,8 @@ export function ProductCard({ product }: ProductCardProps) {
                   color === 'Blanco' && 'bg-white',
                   color === 'Verde' && 'bg-[#98CA3F]',
                   color === 'Gris' && 'bg-gray-500',
-                  color === 'Rosa' && 'bg-[#FF2D78]',
-                  color === 'Multicolor' && 'bg-gradient-to-r from-[#98CA3F] via-[#FF2D78] to-purple-500'
+                  color === 'Rosa' && 'bg-[#FF6B2C]',
+                  color === 'Multicolor' && 'bg-gradient-to-r from-[#98CA3F] via-[#FF6B2C] to-purple-500'
                 )}
                 title={color}
               />

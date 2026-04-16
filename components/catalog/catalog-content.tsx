@@ -88,7 +88,7 @@ export function CatalogContent() {
           variant="outline"
           size="sm"
           onClick={() => setSelectedCategory('todos')}
-          className="w-full rounded-full border-border text-white hover:bg-white/5"
+          className="w-full rounded-full border-white/20 text-white hover:bg-white hover:text-[#0A0A0A] hover:border-white transition-all duration-200"
         >
           <X className="h-4 w-4 mr-2" />
           Limpiar filtros
@@ -116,7 +116,7 @@ export function CatalogContent() {
               <SheetTrigger asChild>
                 <Button
                   variant="outline"
-                  className="lg:hidden rounded-full border-border text-white hover:bg-white/5"
+                  className="lg:hidden rounded-full border-white/20 text-white hover:bg-white hover:text-[#0A0A0A] hover:border-white transition-all duration-200"
                 >
                   <SlidersHorizontal className="h-4 w-4 mr-2" />
                   Filtros

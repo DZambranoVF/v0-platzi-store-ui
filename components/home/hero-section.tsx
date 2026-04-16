@@ -24,7 +24,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
         {/* Glow Effects */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#98CA3F]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#FF2D78]/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#FF6B2C]/10 rounded-full blur-[100px]" />
       </div>
 
       {/* Content */}
@@ -68,7 +68,7 @@ export function HeroSection() {
             asChild
             variant="outline"
             size="lg"
-            className="rounded-full border-white/20 text-white hover:bg-white/5 px-8 h-14 text-base"
+            className="rounded-full border-white/30 text-white hover:bg-white hover:text-[#0A0A0A] hover:border-white px-8 h-14 text-base transition-all duration-200"
           >
             <Link href="#destacados">
               Ver destacados

@@ -22,7 +22,7 @@ export function Navbar() {
   const itemCount = getItemCount()
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md" style={{ borderBottom: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0AE6, #0A0A0AE6), linear-gradient(90deg, transparent 0%, rgba(152,202,63,0.35) 30%, rgba(152,202,63,0.35) 70%, transparent 100%)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', borderBottomWidth: '1px', borderBottomStyle: 'solid' }}>
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link 

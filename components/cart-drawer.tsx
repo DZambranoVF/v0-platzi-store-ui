@@ -141,7 +141,7 @@ export function CartDrawer() {
                 </Button>
                 <Button 
                   variant="outline"
-                  className="w-full rounded-full border-border text-white hover:bg-white/5 h-12"
+                  className="w-full rounded-full border-white/20 text-white hover:bg-white hover:text-[#0A0A0A] hover:border-white h-12 transition-all duration-200"
                   onClick={closeCart}
                   asChild
                 >

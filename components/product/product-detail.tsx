@@ -44,7 +44,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Product Gallery */}
         <div className="space-y-4">
           {/* Main Image */}
-          <div className="aspect-square bg-gradient-to-br from-[#1A1A1A] to-[#111111] rounded-2xl overflow-hidden relative">
+          <div className="aspect-square bg-gradient-to-br from-[#181818] to-[#0f0f0f] rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 0 1px rgba(152,202,63,0.2), 0 0 30px rgba(152,202,63,0.12), 0 0 70px rgba(152,202,63,0.05)' }}>
             <div className="absolute inset-0 flex items-center justify-center">
               <ShoppingBag className="h-32 w-32 text-muted-foreground/20" />
             </div>
@@ -60,10 +60,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
             {[...Array(4)].map((_, i) => (
               <button
                 key={i}
-                className={cn(
-                  'aspect-square bg-[#1A1A1A] rounded-lg overflow-hidden border-2 transition-colors',
-                  i === 0 ? 'border-[#98CA3F]' : 'border-transparent hover:border-white/20'
-                )}
+                className="aspect-square bg-[#141414] rounded-lg overflow-hidden transition-all duration-200"
+                style={i === 0
+                  ? { boxShadow: '0 0 0 1.5px rgba(152,202,63,0.6), 0 0 10px rgba(152,202,63,0.2)' }
+                  : { boxShadow: '0 0 0 1px rgba(255,255,255,0.06)' }}
               >
                 <div className="w-full h-full flex items-center justify-center">
                   <ShoppingBag className="h-8 w-8 text-muted-foreground/30" />
@@ -123,8 +123,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
                       color === 'Blanco' && 'bg-white',
                       color === 'Verde' && 'bg-[#98CA3F]',
                       color === 'Gris' && 'bg-gray-500',
-                      color === 'Rosa' && 'bg-[#FF2D78]',
-                      color === 'Multicolor' && 'bg-gradient-to-r from-[#98CA3F] via-[#FF2D78] to-purple-500'
+                      color === 'Rosa' && 'bg-[#FF6B2C]',
+                      color === 'Multicolor' && 'bg-gradient-to-r from-[#98CA3F] via-[#FF6B2C] to-purple-500'
                     )}
                   />
                 </button>
@@ -169,7 +169,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <Button
               onClick={handleBuyNow}
               variant="outline"
-              className="flex-1 h-14 rounded-full border-[#FF2D78] text-[#FF2D78] hover:bg-[#FF2D78]/10 font-semibold text-base"
+              className="flex-1 h-14 rounded-full border-[#FF6B2C] text-[#FF6B2C] hover:bg-[#FF6B2C]/10 font-semibold text-base"
             >
               <Zap className="h-5 w-5 mr-2" />
               Comprar ahora
