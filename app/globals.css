@@ -141,6 +141,41 @@
     0 1px 0 rgba(0, 0, 0, 0.3);
 }
 
+/* White 3D Text - Main Hero */
+.text-3d-white {
+  color: #FFFFFF;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(255, 255, 255, 0.1),
+    0 2px 0 #b8b8b8,
+    0 4px 0 #a0a0a0,
+    0 6px 0 #888888,
+    0 8px 8px rgba(0, 0, 0, 0.5),
+    0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* White 3D Text - Subtitle */
+.text-3d-white-subtitle {
+  color: #FFFFFF;
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(255, 255, 255, 0.15),
+    0 1px 0 #c0c0c0,
+    0 2px 0 #a8a8a8,
+    0 3px 5px rgba(0, 0, 0, 0.4),
+    0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* White 3D Text - Description */
+.text-3d-white-desc {
+  color: #e0e0e0;
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.2),
+    0 1px 0 #a0a0a0,
+    0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
 .text-glow-green {
   text-shadow: 0 0 10px rgba(152, 202, 63, 0.5), 0 0 20px rgba(152, 202, 63, 0.3);
 }

@@ -40,18 +40,18 @@ export function HeroSection() {
         </div>
 
         {/* Main Title */}
-        <h1 className="font-[family-name:var(--font-space-grotesk)] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white mb-4">
-          PLATZI
-          <span className="block text-neon-green">STORE</span>
+        <h1 className="font-[family-name:var(--font-space-grotesk)] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-4">
+          <span className="text-3d-white">PLATZI</span>
+          <span className="block text-3d-white">STORE</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="font-[family-name:var(--font-space-grotesk)] text-xl sm:text-2xl md:text-3xl text-white/60 mb-8 tracking-wide">
+        <p className="font-[family-name:var(--font-space-grotesk)] text-xl sm:text-2xl md:text-3xl text-3d-white-subtitle mb-8 tracking-wide">
           Viste el conocimiento
         </p>
 
         {/* Description */}
-        <p className="max-w-xl mx-auto text-muted-foreground text-base sm:text-lg mb-10 leading-relaxed">
+        <p className="max-w-xl mx-auto text-3d-white-desc text-base sm:text-lg mb-10 leading-relaxed">
           Productos exclusivos para la comunidad tech más grande de Latinoamérica. 
           Diseñados para quienes nunca paran de aprender.
         </p>
