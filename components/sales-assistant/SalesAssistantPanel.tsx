@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from 'react'
 import { AgentAvatar, AvatarState } from './AgentAvatar'
-import { products } from '@/lib/products'
+import { products, getProductLandingUrl } from '@/lib/products'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Send } from 'lucide-react'
@@ -28,7 +28,15 @@ function stripMarkdown(text: string): string {
 
 function buildSystemPrompt(): string {
   const productsList = products
-    .map(p => `- ${p.name} (${formatPriceForPrompt(p.price)}): ${p.description} ${p.colors?.length ? `Colores: ${p.colors.join(', ')}` : ''} ${p.sizes?.length ? `Tallas: ${p.sizes.join(', ')}` : ''}`)
+    .map(p => {
+      const stockInfo = p.stock !== undefined
+        ? `Stock: ${p.stock} unidades disponibles`
+        : 'Stock: consultar disponibilidad'
+      const landing = getProductLandingUrl(p.slug)
+      const colors = p.colors?.length ? `Colores: ${p.colors.join(', ')}` : ''
+      const sizes = p.sizes?.length ? `Tallas: ${p.sizes.join(', ')}` : ''
+      return `- ${p.name} (${formatPriceForPrompt(p.price)}): ${p.description} ${colors} ${sizes} ${stockInfo} Ver producto: ${landing}`
+    })
     .join('\n')
 
   return `Eres VEGA-BOT, el asistente de ventas virtual de Platzi Store — la tienda oficial de la comunidad tech más grande de Latinoamérica.

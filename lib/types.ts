@@ -13,6 +13,7 @@ export interface Product {
   care?: string
   isNew?: boolean
   isFeatured?: boolean
+  stock?: number
 }
 
 export interface CartItem {

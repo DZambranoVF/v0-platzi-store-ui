@@ -20,6 +20,7 @@ export const products: Product[] = [
     care: 'Lavar a máquina en frío. No usar secadora. Planchar a temperatura media.',
     isNew: true,
     isFeatured: true,
+    stock: 42,
   },
   {
     id: '2',
@@ -47,6 +48,7 @@ export const products: Product[] = [
     care: 'Lavar a máquina en frío. Secar a baja temperatura. No usar blanqueador.',
     isNew: true,
     isFeatured: true,
+    stock: 18,
   },
   {
     id: '3',
@@ -72,6 +74,7 @@ export const products: Product[] = [
     materials: '100% algodón con visera estructurada',
     care: 'Limpiar con paño húmedo. No lavar a máquina.',
     isFeatured: true,
+    stock: 55,
   },
   {
     id: '4',
@@ -85,6 +88,7 @@ export const products: Product[] = [
     materials: 'Vinilo holográfico resistente al agua',
     care: 'Aplicar sobre superficie limpia y seca.',
     isNew: true,
+    stock: 120,
   },
   {
     id: '5',
@@ -103,6 +107,7 @@ export const products: Product[] = [
     materials: 'Cerámica premium con acabado mate',
     care: 'Apto para microondas y lavavajillas.',
     isFeatured: true,
+    stock: 67,
   },
   {
     id: '6',
@@ -122,6 +127,7 @@ export const products: Product[] = [
     care: 'Lavar a mano. No apto para lavavajillas.',
     isNew: true,
     isFeatured: true,
+    stock: 34,
   },
   {
     id: '7',
@@ -141,6 +147,7 @@ export const products: Product[] = [
     care: 'Limpiar con paño húmedo. No lavar a máquina.',
     isFeatured: true,
     isNew: true,
+    stock: 12,
   },
   {
     id: '8',
@@ -154,6 +161,7 @@ export const products: Product[] = [
     description: 'Pack de 3 pares de calcetines con diseños únicos. Algodón premium con refuerzo en talón y puntera.',
     materials: '80% algodón, 15% poliamida, 5% elastano',
     care: 'Lavar a máquina en frío. No usar blanqueador.',
+    stock: 88,
   },
   {
     id: '9',
@@ -173,6 +181,7 @@ export const products: Product[] = [
     care: 'Limpiar con paño húmedo. Secar al aire.',
     isFeatured: true,
     isNew: true,
+    stock: 29,
   },
   {
     id: '10',
@@ -192,6 +201,7 @@ export const products: Product[] = [
     care: 'Mantener en lugar seco.',
     isNew: true,
     isFeatured: true,
+    stock: 45,
   },
 ]
 
@@ -217,6 +227,11 @@ export function getFeaturedProducts(): Product[] {
 
 export function getNewProducts(): Product[] {
   return products.filter(p => p.isNew)
+}
+
+export function getProductLandingUrl(slug: string): string {
+  const base = process.env.NEXT_PUBLIC_URL ?? 'https://v0-platzi-store-ui.vercel.app'
+  return `${base}/catalogo/${slug}`
 }
 
 export function formatPrice(price: number): string {
