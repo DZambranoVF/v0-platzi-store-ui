@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ShoppingBag, Plus } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatPrice } from '@/lib/products'
 import { useCartStore } from '@/lib/cart-store'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
@@ -31,10 +31,19 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="card-premium rounded-xl overflow-hidden border border-transparent" style={{ boxShadow: '0 0 0 1px rgba(152,202,63,0.12), 0 0 24px rgba(152,202,63,0.08)' }}>
         {/* Image */}
         <div className="relative aspect-square bg-gradient-to-br from-[#181818] to-[#0f0f0f] overflow-hidden" style={{ boxShadow: 'inset 0 0 40px rgba(152,202,63,0.04)' }}>
-          {/* Placeholder with icon */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <ShoppingBag className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform duration-300" />
-          </div>
+          {product.images && product.images[0] ? (
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ShoppingBag className="h-16 w-16 text-muted-foreground/30 group-hover:scale-110 transition-transform duration-300" />
+            </div>
+          )}
           
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">

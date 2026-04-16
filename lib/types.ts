@@ -7,6 +7,7 @@ export interface Product {
   colors: string[]
   sizes?: string[]
   images: string[]
+  colorImages?: Record<string, string>
   description: string
   materials?: string
   care?: string
