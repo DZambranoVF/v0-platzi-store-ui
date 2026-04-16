@@ -125,7 +125,6 @@ export const products: Product[] = [
     description: 'Pack de 3 pares de calcetines con diseños únicos. Algodón premium con refuerzo en talón y puntera.',
     materials: '80% algodón, 15% poliamida, 5% elastano',
     care: 'Lavar a máquina en frío. No usar blanqueador.',
-    isFeatured: true,
   },
   {
     id: '9',
