@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronRight, ShoppingBag, Zap, Truck, Shield } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatPrice } from '@/lib/products'
@@ -17,6 +18,7 @@ interface ProductDetailProps {
 export function ProductDetail({ product }: ProductDetailProps) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0])
+  const [selectedImage, setSelectedImage] = useState(0)
   const { addItem, openCart } = useCartStore()
 
   const handleAddToCart = () => {
@@ -45,32 +47,50 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="space-y-4">
           {/* Main Image */}
           <div className="aspect-square bg-gradient-to-br from-[#181818] to-[#0f0f0f] rounded-2xl overflow-hidden relative" style={{ boxShadow: '0 0 0 1px rgba(152,202,63,0.2), 0 0 30px rgba(152,202,63,0.12), 0 0 70px rgba(152,202,63,0.05)' }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <ShoppingBag className="h-32 w-32 text-muted-foreground/20" />
-            </div>
+            {product.images && product.images[selectedImage] ? (
+              <Image
+                src={product.images[selectedImage]}
+                alt={product.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <ShoppingBag className="h-32 w-32 text-muted-foreground/20" />
+              </div>
+            )}
             {product.isNew && (
-              <div className="absolute top-4 left-4 px-3 py-1.5 badge-neon-3d text-[#0A0A0A] text-sm font-semibold rounded-full">
+              <div className="absolute top-4 left-4 px-3 py-1.5 badge-neon-3d text-[#0A0A0A] text-sm font-semibold rounded-full z-10">
                 Nuevo
               </div>
             )}
           </div>
 
           {/* Thumbnails */}
-          <div className="grid grid-cols-4 gap-4">
-            {[...Array(4)].map((_, i) => (
-              <button
-                key={i}
-                className="aspect-square bg-[#141414] rounded-lg overflow-hidden transition-all duration-200"
-                style={i === 0
-                  ? { boxShadow: '0 0 0 1.5px rgba(152,202,63,0.6), 0 0 10px rgba(152,202,63,0.2)' }
-                  : { boxShadow: '0 0 0 1px rgba(255,255,255,0.06)' }}
-              >
-                <div className="w-full h-full flex items-center justify-center">
-                  <ShoppingBag className="h-8 w-8 text-muted-foreground/30" />
-                </div>
-              </button>
-            ))}
-          </div>
+          {product.images && product.images.length > 1 && (
+            <div className="grid grid-cols-4 gap-4">
+              {product.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedImage(i)}
+                  className="aspect-square bg-[#141414] rounded-lg overflow-hidden transition-all duration-200 relative"
+                  style={i === selectedImage
+                    ? { boxShadow: '0 0 0 1.5px rgba(152,202,63,0.6), 0 0 10px rgba(152,202,63,0.2)' }
+                    : { boxShadow: '0 0 0 1px rgba(255,255,255,0.06)' }}
+                >
+                  <Image
+                    src={img}
+                    alt={`${product.name} - Vista ${i + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="100px"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Product Info */}
