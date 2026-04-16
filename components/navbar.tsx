@@ -24,14 +24,22 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md" style={{ borderBottom: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0AE6, #0A0A0AE6), linear-gradient(90deg, transparent 0%, rgba(152,202,63,0.35) 30%, rgba(152,202,63,0.35) 70%, transparent 100%)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', borderBottomWidth: '1px', borderBottomStyle: 'solid' }}>
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link 
-          href="/" 
-          className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight transition-colors hover:opacity-80"
-        >
-          <span className="text-white">PLATZI</span>
-          <span className="text-neon-green">STORE</span>
-        </Link>
+        {/* Logo with Slogan */}
+        <div className="flex flex-col gap-0.5">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight transition-colors hover:opacity-80"
+          >
+            <span className="text-white">PLATZI</span>
+            <span className="text-neon-green">STORE</span>
+          </Link>
+          {/* Slogan */}
+          <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
+            <span className="text-white">NUNCA PARES </span>
+            <span className="text-neon-green" style={{ textShadow: '0 0 8px rgba(152,202,63,0.6)' }}>DE COMPRAR</span>
+          </div>
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
@@ -57,10 +65,11 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="relative text-white hover:text-[#98CA3F] hover:bg-white/5"
+            className="relative text-neon-green hover:text-neon-green hover:bg-white/5"
             onClick={openCart}
+            style={{ filter: 'drop-shadow(0 0 8px rgba(152,202,63,0.6))' }}
           >
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-6 w-6" />
             {itemCount > 0 && (
               <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full badge-neon-3d text-[#0A0A0A] text-xs font-bold flex items-center justify-center">
                 {itemCount}
@@ -79,13 +88,19 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="bg-[#0A0A0A] border-l border-border w-[280px]">
               <div className="flex flex-col gap-6 mt-8">
-                <Link 
-                  href="/" 
-                  className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
-                </Link>
+                <div className="flex flex-col gap-0.5">
+                  <Link 
+                    href="/" 
+                    className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
+                  </Link>
+                  <div className="text-[10px] font-bold tracking-[0.15em] uppercase leading-none">
+                    <span className="text-white">NUNCA PARES </span>
+                    <span className="text-neon-green">DE COMPRAR</span>
+                  </div>
+                </div>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <Link
