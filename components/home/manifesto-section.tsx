@@ -1,6 +1,6 @@
 export function ManifestoSection() {
   return (
-    <section className="py-24 bg-[#111111] relative overflow-hidden">
+    <section className="py-16 bg-[#111111] relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#98CA3F]/5 rounded-full blur-[150px]" />
 

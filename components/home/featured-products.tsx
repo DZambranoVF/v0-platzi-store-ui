@@ -8,7 +8,7 @@ export function FeaturedProducts() {
   const products = getFeaturedProducts()
 
   return (
-    <section id="destacados" className="py-24 bg-[#0A0A0A]">
+    <section id="destacados" className="py-16 bg-[#0A0A0A]">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
