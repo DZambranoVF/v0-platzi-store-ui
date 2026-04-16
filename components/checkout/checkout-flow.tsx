@@ -71,6 +71,7 @@ export function CheckoutFlow() {
   }
 
   const handlePaymentSuccess = () => {
+    setOrderComplete(true)
     clearCart()
     router.push('/gracias?status=approved')
   }
