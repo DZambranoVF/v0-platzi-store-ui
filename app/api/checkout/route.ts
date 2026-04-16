@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    console.log('[checkout] notification_url enviada a MP:', `${process.env.NEXT_PUBLIC_URL}/api/webhook`)
     return NextResponse.json({ preferenceId: result.id })
   } catch (err) {
     console.error('[checkout] Error creando preferencia:', err)
