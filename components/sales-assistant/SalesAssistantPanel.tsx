@@ -5,11 +5,12 @@ import { AgentAvatar, AvatarState } from './AgentAvatar'
 import { products, getProductLandingUrl } from '@/lib/products'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Send } from 'lucide-react'
+import { Send, ImagePlus, X } from 'lucide-react'
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
   text: string
+  imagePreview?: string
 }
 
 function formatPriceForPrompt(price: number): string {
@@ -52,7 +53,8 @@ INSTRUCCIONES:
 - Si preguntan por colores o tallas disponibles, responde con precisión
 - No inventes productos que no están en el catálogo
 - No uses markdown, asteriscos ni formato especial — responde en texto plano
-- Sé breve para que la síntesis de voz no tarde demasiado`
+- Sé breve para que la síntesis de voz no tarde demasiado
+- Si el usuario envía una foto suya, analiza su estilo y tonos de color para recomendar el producto y color del catálogo que mejor le quedaría. Sé específico y entusiasta`
 }
 
 function audioBufferToPcm16(buf: AudioBuffer): Uint8Array {
@@ -74,11 +76,13 @@ export function SalesAssistantPanel() {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isReady, setIsReady] = useState(false)
+  const [pendingImage, setPendingImage] = useState<{ base64: string; mediaType: string; preview: string } | null>(null)
 
   const sendAudioRef = useRef<((chunk: Uint8Array) => void) | null>(null)
-  const messagesRef = useRef<{ role: string; content: string }[]>([])
+  const messagesRef = useRef<{ role: string; content: unknown }[]>([])
   const playbackAudioRef = useRef<HTMLAudioElement | null>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const busy = avatarState === 'thinking' || avatarState === 'talking'
 
   const scrollToBottom = useCallback(() => {
@@ -104,8 +108,24 @@ export function SalesAssistantPanel() {
     setAvatarState('error')
   }, [])
 
+  const handleImageSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const mediaType = file.type as string
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string
+      const base64 = dataUrl.split(',')[1]
+      setPendingImage({ base64, mediaType, preview: dataUrl })
+    }
+    reader.readAsDataURL(file)
+    e.target.value = ''
+  }, [])
+
   const handleSend = useCallback(async (text: string) => {
-    if (!text.trim() || busy) return
+    const hasImage = !!pendingImage
+    if (!text.trim() && !hasImage) return
+    if (busy) return
 
     if (!playbackAudioRef.current) {
       playbackAudioRef.current = document.createElement('audio')
@@ -113,12 +133,24 @@ export function SalesAssistantPanel() {
     playbackAudioRef.current.muted = true
     playbackAudioRef.current.play().catch(() => {})
 
+    const displayText = text.trim() || (hasImage ? '📷 [foto enviada]' : '')
     setInput('')
-    setMessages(prev => [...prev, { role: 'user', text }])
+    setMessages(prev => [...prev, {
+      role: 'user',
+      text: displayText,
+      imagePreview: pendingImage?.preview,
+    }])
     setAvatarState('thinking')
     scrollToBottom()
 
-    messagesRef.current = [...messagesRef.current, { role: 'user', content: text }]
+    const apiContent = hasImage
+      ? [
+          { type: 'image', source: { type: 'base64', media_type: pendingImage!.mediaType, data: pendingImage!.base64 } },
+          { type: 'text', text: text.trim() || '¿Qué producto me recomiendas basándote en mi foto?' },
+        ]
+      : text.trim()
+    messagesRef.current = [...messagesRef.current, { role: 'user', content: apiContent }]
+    setPendingImage(null)
 
     try {
       const brainRes = await fetch('/api/brain', {
@@ -147,7 +179,7 @@ export function SalesAssistantPanel() {
       }
 
       const cleanText = stripMarkdown(fullText)
-      messagesRef.current = [...messagesRef.current, { role: 'assistant', content: cleanText }]
+      messagesRef.current = [...messagesRef.current, { role: 'assistant', content: cleanText as unknown }]
       setMessages(prev => [...prev, { role: 'assistant', text: cleanText }])
       scrollToBottom()
 
@@ -213,7 +245,7 @@ export function SalesAssistantPanel() {
     }
 
     setAvatarState('idle')
-  }, [busy, scrollToBottom])
+  }, [busy, pendingImage, scrollToBottom])
 
   const FACE_ID = process.env.NEXT_PUBLIC_SIMLI_FACE_ID || ''
   const G = '#98CA3F'
@@ -305,7 +337,14 @@ export function SalesAssistantPanel() {
                   wordBreak: 'break-word',
                 }}
               >
-                {msg.text}
+                {msg.imagePreview && (
+                  <img
+                    src={msg.imagePreview}
+                    alt="foto enviada"
+                    style={{ width: '100%', borderRadius: '8px', marginBottom: msg.text && msg.text !== '📷 [foto enviada]' ? '6px' : 0, display: 'block' }}
+                  />
+                )}
+                {msg.text && msg.text !== '📷 [foto enviada]' && <span>{msg.text}</span>}
               </div>
             </div>
           ))
@@ -315,7 +354,55 @@ export function SalesAssistantPanel() {
 
       {/* Input */}
       <div className="flex-shrink-0 p-3" style={{ borderTop: `1px solid ${G}20`, background: `rgba(152,202,63,0.03)` }}>
+        {/* Preview de imagen pendiente */}
+        {pendingImage && (
+          <div style={{ marginBottom: '8px', position: 'relative', display: 'inline-block' }}>
+            <img
+              src={pendingImage.preview}
+              alt="adjunto"
+              style={{ height: '60px', borderRadius: '8px', border: `1px solid ${G}40`, display: 'block' }}
+            />
+            <button
+              onClick={() => setPendingImage(null)}
+              style={{
+                position: 'absolute', top: '-6px', right: '-6px',
+                background: '#1a1a1a', border: `1px solid ${G}40`,
+                borderRadius: '50%', width: '18px', height: '18px',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', padding: 0,
+              }}
+            >
+              <X style={{ width: '10px', height: '10px', color: G }} />
+            </button>
+          </div>
+        )}
         <div className="flex gap-2">
+          {/* Botón adjuntar imagen */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={handleImageSelect}
+          />
+          <Button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={!isReady || busy}
+            size="sm"
+            title="Adjuntar foto"
+            style={(!isReady || busy) ? {
+              background: 'rgba(30,40,30,0.8)',
+              color: '#334',
+              flexShrink: 0,
+            } : {
+              background: 'rgba(10,18,12,0.8)',
+              border: `1px solid ${G}40`,
+              color: pendingImage ? G : `${G}80`,
+              flexShrink: 0,
+            }}
+          >
+            <ImagePlus className="w-4 h-4" />
+          </Button>
           <Input
             placeholder={isReady ? 'Escribe tu pregunta...' : 'Conectando VEGA-BOT...'}
             value={input}
@@ -336,9 +423,9 @@ export function SalesAssistantPanel() {
           />
           <Button
             onClick={() => handleSend(input)}
-            disabled={!isReady || busy || !input.trim()}
+            disabled={!isReady || busy || (!input.trim() && !pendingImage)}
             size="sm"
-            style={(!isReady || busy || !input.trim()) ? {
+            style={(!isReady || busy || (!input.trim() && !pendingImage)) ? {
               background: 'rgba(30,40,30,0.8)',
               color: '#334',
             } : {
