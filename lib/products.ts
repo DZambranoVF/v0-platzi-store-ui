@@ -38,6 +38,7 @@ export const products: Product[] = [
       '/images/hoodie-negra-espalda.jpg',
       '/images/hoodie-verde-frente.jpg',
       '/images/hoodie-verde-espalda.jpg',
+      '/images/hoodie-negro-freddy.jpg',
     ],
     colorImages: {
       'Blanco': '/images/hoodie-blanca-frente.jpg',
@@ -65,6 +66,7 @@ export const products: Product[] = [
       '/images/gorra-negra-lateral.jpg',
       '/images/gorra-verde-frente.jpg',
       '/images/gorra-verde-lateral.jpg',
+      '/images/gorra-verde-freddy.jpg',
     ],
     colorImages: {
       'Blanco': '/images/gorra-blanca-frente.jpg',
@@ -98,7 +100,7 @@ export const products: Product[] = [
     price: 45000,
     category: 'accesorios',
     colors: ['Blanco', 'Negro', 'Verde'],
-    images: ['/images/mug-blanco.jpg', '/images/mug-negro.jpg', '/images/mug-verde.jpg'],
+    images: ['/images/mug-blanco.jpg', '/images/mug-negro.jpg', '/images/mug-verde.jpg', '/images/mug-blanco-freddy.jpg'],
     colorImages: {
       'Blanco': '/images/mug-blanco.jpg',
       'Negro': '/images/mug-negro.jpg',
@@ -117,7 +119,7 @@ export const products: Product[] = [
     price: 85000,
     category: 'accesorios',
     colors: ['Negro', 'Blanco', 'Verde'],
-    images: ['/images/termo-negro.jpg', '/images/termo-blanco.jpg', '/images/termo-verde.jpg'],
+    images: ['/images/termo-negro.jpg', '/images/termo-blanco.jpg', '/images/termo-verde.jpg', '/images/termo-blanco-freddy.jpg'],
     colorImages: {
       'Negro': '/images/termo-negro.jpg',
       'Blanco': '/images/termo-blanco.jpg',
@@ -158,7 +160,7 @@ export const products: Product[] = [
     category: 'ropa',
     colors: ['Blanco', 'Negro', 'Verde'],
     sizes: ['S/M', 'L/XL'],
-    images: ['/images/medias-blanco.jpg', '/images/medias-negro.jpg', '/images/medias-verde.jpg'],
+    images: ['/images/medias-blanco.jpg', '/images/medias-negro.jpg', '/images/medias-verde.jpg', '/images/medias-blanco-freddy.jpg'],
     colorImages: {
       'Blanco': '/images/medias-blanco.jpg',
       'Negro': '/images/medias-negro.jpg',
@@ -196,7 +198,7 @@ export const products: Product[] = [
     price: 75000,
     category: 'oficina',
     colors: ['Negro', 'Blanco', 'Verde'],
-    images: ['/images/agenda-negra.jpg', '/images/agenda-blanca.jpg', '/images/agenda-verde.jpg'],
+    images: ['/images/agenda-negra.jpg', '/images/agenda-blanca.jpg', '/images/agenda-verde.jpg', '/images/agenda-blanca-freddy.jpg', '/images/agenda-blanca-freddy-2.jpg'],
     colorImages: {
       'Negro': '/images/agenda-negra.jpg',
       'Blanco': '/images/agenda-blanca.jpg',
