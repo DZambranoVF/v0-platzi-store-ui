@@ -81,7 +81,7 @@ export function HeroSection() {
         </div>
 
         {/* Stats */}
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12">
           {[
             { value: '50K+', label: 'Comunidad' },
             { value: '10+', label: 'Productos' },
@@ -98,7 +98,7 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="text-xs text-muted-foreground uppercase tracking-widest">Scroll</span>
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-[#98CA3F] rounded-full animate-bounce" />
