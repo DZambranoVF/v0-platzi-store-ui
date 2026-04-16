@@ -17,8 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Platzi Store | Nunca Pares de Comprar',
-  description: 'Tienda oficial de Platzi. Nunca pares de comprar. Productos exclusivos para la comunidad tech más grande de Latinoamérica.',
+  title: 'Platzi Store | Viste el conocimiento',
+  description: 'Tienda oficial de Platzi. Productos exclusivos para la comunidad tech más grande de Latinoamérica. Aprende. Construye. Úsalo.',
   keywords: ['Platzi', 'tienda', 'merch', 'programación', 'tecnología', 'educación'],
   authors: [{ name: 'Platzi' }],
   openGraph: {

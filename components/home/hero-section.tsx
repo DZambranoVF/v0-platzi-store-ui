@@ -45,10 +45,9 @@ export function HeroSection() {
           <span className="block text-neon-green">STORE</span>
         </h1>
 
-        {/* Slogan */}
-        <p className="font-[family-name:var(--font-space-grotesk)] text-xl sm:text-2xl md:text-3xl font-bold mb-8 tracking-widest uppercase">
-          <span className="text-white">NUNCA PARES </span>
-          <span className="text-neon-green" style={{ textShadow: '0 0 20px rgba(152,202,63,0.8), 0 0 40px rgba(152,202,63,0.4)' }}>DE COMPRAR</span>
+        {/* Subtitle */}
+        <p className="font-[family-name:var(--font-space-grotesk)] text-xl sm:text-2xl md:text-3xl text-3d-white-subtitle mb-8 tracking-wide">
+          Viste el conocimiento
         </p>
 
         {/* Description */}
