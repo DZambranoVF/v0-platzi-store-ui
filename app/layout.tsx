@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SalesAssistantBubble } from '@/components/sales-assistant/SalesAssistantBubble'
 import './globals.css'
 
 const inter = Inter({ 
@@ -36,6 +37,7 @@ export default function RootLayout({
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} bg-background`}>
       <body className="font-sans antialiased min-h-screen">
         {children}
+        <SalesAssistantBubble />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
