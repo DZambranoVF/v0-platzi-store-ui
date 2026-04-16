@@ -92,10 +92,20 @@ export function ContactForm() {
     if (!validateAll()) return
 
     setStatus('loading')
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setStatus('success')
-    setFormData({ nombre: '', email: '', asunto: '', mensaje: '' })
-    setTouched(new Set())
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) throw new Error('Error al enviar')
+      setStatus('success')
+      setFormData({ nombre: '', email: '', asunto: '', mensaje: '' })
+      setTouched(new Set())
+    } catch {
+      setStatus('idle')
+      setErrors(prev => ({ ...prev, mensaje: 'No se pudo enviar. Intenta de nuevo.' }))
+    }
   }
 
   const isValid = !Object.values(errors).some(e => e) &&
