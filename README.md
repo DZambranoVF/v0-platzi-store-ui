@@ -21,6 +21,7 @@ Abre la tienda y haz clic en el botón **VB** en la esquina inferior derecha par
 | UI | React 19 + Tailwind CSS v4 |
 | Componentes | shadcn/ui |
 | Estado carrito | Zustand |
+| Pasarela de pagos | MercadoPago Checkout Bricks |
 | Tipografías | Inter + Space Grotesk (Google Fonts) |
 | Analytics | Vercel Analytics |
 
@@ -40,6 +41,9 @@ Abre la tienda y haz clic en el botón **VB** en la esquina inferior derecha par
 - Catálogo de productos con filtro por categoría
 - Página de detalle por producto (colores, tallas, descripción)
 - Carrito lateral con Zustand (persistente en sesión)
+- **Checkout en 4 pasos**: datos personales → dirección → pago → confirmación
+- **Pasarela MercadoPago**: Checkout Bricks con tarjeta crédito/débito, PSE, efectivo, wallet MP
+- **Webhook de notificación**: Recibe y registra eventos de pago de MercadoPago
 - Formulario de contacto
 - Hero animado, sección de manifiesto, prueba social, newsletter
 - Totalmente responsivo
@@ -90,7 +94,11 @@ v0-platzi-store-ui/
 ├── app/
 │   ├── api/
 │   │   ├── brain/route.ts          # Claude Sonnet — streaming SSE
-│   │   └── voice/route.ts          # ElevenLabs TTS — stream MP3
+│   │   ├── voice/route.ts          # ElevenLabs TTS — stream MP3
+│   │   ├── checkout/route.ts       # MercadoPago — crea preferencia de pago
+│   │   └── webhook/route.ts        # MercadoPago — recibe notificaciones de pago
+│   ├── checkout/page.tsx           # Página checkout (4 pasos)
+│   ├── gracias/page.tsx            # Confirmación de pedido (approved / pending)
 │   ├── layout.tsx                  # Root layout + SalesAssistantBubble
 │   ├── page.tsx                    # Home: Hero + Catálogo + Secciones
 │   └── globals.css
@@ -102,10 +110,17 @@ v0-platzi-store-ui/
 │   │   ├── categories-section.tsx
 │   │   ├── social-proof-section.tsx
 │   │   └── newsletter-section.tsx
+│   ├── checkout/
+│   │   ├── checkout-flow.tsx        # Orquestador de los 4 pasos
+│   │   ├── step-personal-data.tsx
+│   │   ├── step-shipping.tsx
+│   │   ├── step-payment.tsx         # Integra MercadoPagoBrick
+│   │   └── step-confirmation.tsx
 │   ├── sales-assistant/
 │   │   ├── AgentAvatar.tsx          # Simli WebRTC (160×160px)
 │   │   ├── SalesAssistantPanel.tsx  # Chat + orquestación audio
 │   │   └── SalesAssistantBubble.tsx # Botón flotante + panel
+│   ├── MercadoPagoBrick.tsx         # Wrapper Payment Brick de MP
 │   ├── cart-drawer.tsx
 │   ├── navbar.tsx
 │   ├── footer.tsx
@@ -133,6 +148,11 @@ ELEVENLABS_VOICE_ID=<id-de-voz>
 # Simli (WebRTC Avatar)
 NEXT_PUBLIC_SIMLI_API_KEY=<api-key-simli>
 NEXT_PUBLIC_SIMLI_FACE_ID=<face-id-simli>
+
+# MercadoPago
+MP_ACCESS_TOKEN=<access-token-mp>
+NEXT_PUBLIC_MP_PUBLIC_KEY=<public-key-mp>
+NEXT_PUBLIC_URL=https://tu-dominio.com
 ```
 
 ### Cómo obtener cada key
@@ -144,8 +164,12 @@ NEXT_PUBLIC_SIMLI_FACE_ID=<face-id-simli>
 | `ELEVENLABS_VOICE_ID` | ElevenLabs → Voice Library → ID de la voz elegida |
 | `NEXT_PUBLIC_SIMLI_API_KEY` | [simli.com](https://simli.com) → Dashboard → API Keys |
 | `NEXT_PUBLIC_SIMLI_FACE_ID` | Simli → Avatars → selecciona o crea uno → Face ID |
+| `MP_ACCESS_TOKEN` | [mercadopago.com/developers](https://www.mercadopago.com/developers) → Credenciales → Access Token |
+| `NEXT_PUBLIC_MP_PUBLIC_KEY` | MercadoPago Developers → Credenciales → Public Key |
+| `NEXT_PUBLIC_URL` | URL de tu sitio en producción (e.g. `https://v0-platzi-store-ui.vercel.app`) |
 
-> **Sin estas keys**: la tienda funciona normalmente. VEGA-BOT mostrará estado "conectando..." pero no hará crash.
+> **Sin las keys de VEGA-BOT**: la tienda funciona normalmente. El asistente mostrará "conectando..." pero no hará crash.  
+> **Sin las keys de MercadoPago**: el checkout llega hasta el paso 3 y muestra error al intentar crear la preferencia de pago.
 
 ---
 
@@ -210,6 +234,32 @@ pnpm start
 ```
 
 O despliega directamente en **Vercel** — agrega las variables de entorno en el dashboard antes del deploy.
+
+---
+
+## Flujo de Pago (MercadoPago)
+
+```
+Paso 3 (Checkout) → POST /api/checkout → MP Preference creada
+        │                                         │
+        │                                   preferenceId
+        │                                         │
+        ▼                                         ▼
+MercadoPagoBrick.tsx ◄─────────────── initMercadoPago()
+  (Payment Brick)                                 │
+        │                                         │
+  Usuario paga ──────────────────────────────────►│
+        │                                         │
+        ▼                                         ▼
+  back_url /gracias?status=approved     /api/webhook (notificación asíncrona)
+        │
+        ▼
+  clearCart() + página de confirmación
+```
+
+- En **sandbox**: usa las tarjetas de prueba de [MercadoPago Colombia](https://www.mercadopago.com.co/developers/es/docs/checkout-bricks/additional-content/your-integrations/test/cards)
+- En **producción**: reemplaza las keys `TEST-` por las credenciales productivas de tu cuenta MP
+- El webhook siempre responde `200` para evitar reintentos de MP; los logs se registran en consola (Cloud Run / Vercel logs)
 
 ---
 

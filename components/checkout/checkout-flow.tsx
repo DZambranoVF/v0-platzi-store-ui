@@ -69,6 +69,11 @@ export function CheckoutFlow() {
     }
   }
 
+  const handlePaymentSuccess = () => {
+    clearCart()
+    router.push('/gracias?status=approved')
+  }
+
   const handleConfirmOrder = async () => {
     setIsSubmitting(true)
     // Simulate order submission
@@ -214,6 +219,8 @@ export function CheckoutFlow() {
                 onUpdate={updateFormData}
                 onComplete={() => handleStepComplete(3)}
                 onBack={handleGoBack}
+                items={items}
+                onPaymentSuccess={handlePaymentSuccess}
               />
             )}
             {currentStep === 4 && (
