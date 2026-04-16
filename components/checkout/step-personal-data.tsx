@@ -158,7 +158,7 @@ export function StepPersonalData({ data, onUpdate, onComplete }: StepPersonalDat
       <Button
         type="submit"
         disabled={!isValid}
-        className="w-full h-14 rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed glow-green-sm"
+        className="w-full h-14 rounded-full text-[#0A0A0A] font-semibold text-base disabled:opacity-50 disabled:cursor-not-allowed btn-neon-3d border-0"
       >
         Continuar
         <ArrowRight className="h-5 w-5 ml-2" />

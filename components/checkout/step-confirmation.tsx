@@ -31,7 +31,7 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
       {/* Personal Data */}
       <div className="p-4 bg-secondary rounded-xl space-y-3">
         <div className="flex items-center gap-2 text-white font-medium">
-          <User className="h-4 w-4 text-[#98CA3F]" />
+          <User className="h-4 w-4 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 3px rgba(152,202,63,0.5))' }} />
           Datos personales
         </div>
         <div className="text-sm text-muted-foreground space-y-1">
@@ -44,7 +44,7 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
       {/* Shipping Address */}
       <div className="p-4 bg-secondary rounded-xl space-y-3">
         <div className="flex items-center gap-2 text-white font-medium">
-          <MapPin className="h-4 w-4 text-[#98CA3F]" />
+          <MapPin className="h-4 w-4 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 3px rgba(152,202,63,0.5))' }} />
           Dirección de envío
         </div>
         <div className="text-sm text-muted-foreground space-y-1">
@@ -58,7 +58,7 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
       {/* Payment Method */}
       <div className="p-4 bg-secondary rounded-xl space-y-3">
         <div className="flex items-center gap-2 text-white font-medium">
-          <CreditCard className="h-4 w-4 text-[#98CA3F]" />
+          <CreditCard className="h-4 w-4 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 3px rgba(152,202,63,0.5))' }} />
           Método de pago
         </div>
         <div className="text-sm text-muted-foreground space-y-1">
@@ -70,7 +70,7 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
       {/* Products */}
       <div className="p-4 bg-secondary rounded-xl space-y-4">
         <div className="flex items-center gap-2 text-white font-medium">
-          <ShoppingBag className="h-4 w-4 text-[#98CA3F]" />
+          <ShoppingBag className="h-4 w-4 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 3px rgba(152,202,63,0.5))' }} />
           Productos ({items.length})
         </div>
         <div className="space-y-3">
@@ -105,12 +105,12 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Envío</span>
-            <span className="text-[#98CA3F]">Gratis</span>
+            <span className="text-neon-green-soft">Gratis</span>
           </div>
           <div className="h-px bg-border my-2" />
           <div className="flex justify-between items-center">
             <span className="font-semibold text-white">Total a pagar</span>
-            <span className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#98CA3F]">
+            <span className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-neon-green">
               {formatPrice(total)}
             </span>
           </div>
@@ -131,7 +131,7 @@ export function StepConfirmation({ data, items, total, onConfirm, onBack, isSubm
         <Button
           onClick={onConfirm}
           disabled={isSubmitting}
-          className="flex-1 h-14 rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold disabled:opacity-70 glow-green-sm"
+          className="flex-1 h-14 rounded-full text-[#0A0A0A] font-semibold disabled:opacity-70 btn-neon-3d border-0"
         >
           {isSubmitting ? (
             <>

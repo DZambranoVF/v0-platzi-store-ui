@@ -30,15 +30,15 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-          <Sparkles className="h-4 w-4 text-[#98CA3F]" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-[#98CA3F]/30 mb-8" style={{ boxShadow: '0 0 15px rgba(152,202,63,0.15), inset 0 0 10px rgba(152,202,63,0.05)' }}>
+          <Sparkles className="h-4 w-4 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 4px rgba(152,202,63,0.6))' }} />
           <span className="text-sm text-white/80">Nueva colección disponible</span>
         </div>
 
         {/* Main Title */}
         <h1 className="font-[family-name:var(--font-space-grotesk)] text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-white mb-4">
           PLATZI
-          <span className="block text-[#98CA3F] text-glow-green">STORE</span>
+          <span className="block text-neon-green">STORE</span>
         </h1>
 
         {/* Subtitle */}
@@ -57,7 +57,7 @@ export function HeroSection() {
           <Button 
             asChild
             size="lg"
-            className="rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold px-8 h-14 text-base glow-green btn-neon"
+            className="rounded-full text-[#0A0A0A] font-semibold px-8 h-14 text-base btn-neon-3d border-0"
           >
             <Link href="/catalogo" className="flex items-center gap-2">
               Explorar colección
@@ -84,7 +84,7 @@ export function HeroSection() {
             { value: '100%', label: 'Exclusivo' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold text-[#98CA3F]">
+              <p className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold text-neon-green-soft">
                 {stat.value}
               </p>
               <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>

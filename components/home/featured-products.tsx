@@ -13,7 +13,7 @@ export function FeaturedProducts() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
-            <span className="text-[#98CA3F] text-sm font-semibold uppercase tracking-wider">
+            <span className="text-neon-green-soft text-sm font-semibold uppercase tracking-wider">
               Lo mejor para ti
             </span>
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-4xl font-bold text-white mt-2">

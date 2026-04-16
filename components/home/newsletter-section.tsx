@@ -27,12 +27,12 @@ export function NewsletterSection() {
     <section className="py-24 bg-[#0A0A0A] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-[#98CA3F]/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[#FF2D78]/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[#FF6B2C]/10 rounded-full blur-[120px]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           {/* Badge */}
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#98CA3F]/10 text-[#98CA3F] text-sm font-semibold mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#98CA3F]/10 text-neon-green-soft text-sm font-semibold mb-6" style={{ boxShadow: '0 0 15px rgba(152,202,63,0.15), inset 0 0 10px rgba(152,202,63,0.05)' }}>
             Newsletter
           </span>
 
@@ -60,7 +60,7 @@ export function NewsletterSection() {
             <Button
               type="submit"
               disabled={status === 'loading' || status === 'success' || !email}
-              className="h-12 px-8 rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold disabled:opacity-50 glow-green-sm"
+              className="h-12 px-8 rounded-full text-[#0A0A0A] font-semibold disabled:opacity-50 btn-neon-3d border-0"
             >
               {status === 'loading' ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -77,7 +77,7 @@ export function NewsletterSection() {
 
           {/* Success Message */}
           {status === 'success' && (
-            <p className="mt-4 text-sm text-[#98CA3F]">
+            <p className="mt-4 text-sm text-neon-green-soft">
               ¡Genial! Ya estás suscrito. Revisa tu correo.
             </p>
           )}

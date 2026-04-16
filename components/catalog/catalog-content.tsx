@@ -62,7 +62,7 @@ export function CatalogContent() {
               className={cn(
                 'w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all',
                 selectedCategory === category.id
-                  ? 'bg-[#98CA3F] text-[#0A0A0A]'
+                  ? 'badge-neon-3d text-[#0A0A0A]'
                   : 'text-white/70 hover:text-white hover:bg-white/5'
               )}
             >
@@ -167,7 +167,7 @@ export function CatalogContent() {
               <Button
                 variant="link"
                 onClick={() => setSelectedCategory('todos')}
-                className="text-[#98CA3F] mt-2"
+                className="text-neon-green-soft mt-2"
               >
                 Ver todos los productos
               </Button>

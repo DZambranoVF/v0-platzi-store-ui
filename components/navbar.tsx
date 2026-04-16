@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/cart-store'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { InteractiveNodes } from '@/components/interactive-nodes'
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -24,12 +25,16 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md" style={{ borderBottom: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0AE6, #0A0A0AE6), linear-gradient(90deg, transparent 0%, rgba(152,202,63,0.35) 30%, rgba(152,202,63,0.35) 70%, transparent 100%)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', borderBottomWidth: '1px', borderBottomStyle: 'solid' }}>
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
+        {/* Logo with Interactive Nodes */}
         <Link 
           href="/" 
-          className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight text-white hover:text-[#98CA3F] transition-colors"
+          className="relative font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight transition-all duration-300 flex items-center"
         >
-          PLATZI<span className="text-[#98CA3F]">STORE</span>
+          <div className="relative w-[120px] h-[60px] -ml-4 -my-4">
+            <InteractiveNodes />
+          </div>
+          <span className="relative z-10 -ml-2 text-white">PLATZI</span>
+          <span className="relative z-10 text-neon-green-soft">STORE</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -61,7 +66,7 @@ export function Navbar() {
           >
             <ShoppingBag className="h-5 w-5" />
             {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-[#98CA3F] text-[#0A0A0A] text-xs font-bold flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full badge-neon-3d text-[#0A0A0A] text-xs font-bold flex items-center justify-center">
                 {itemCount}
               </span>
             )}
@@ -80,10 +85,10 @@ export function Navbar() {
               <div className="flex flex-col gap-6 mt-8">
                 <Link 
                   href="/" 
-                  className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight text-white"
+                  className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  PLATZI<span className="text-[#98CA3F]">STORE</span>
+                  <span className="text-white">PLATZI</span><span className="text-neon-green-soft">STORE</span>
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (

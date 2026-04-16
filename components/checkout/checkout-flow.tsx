@@ -91,7 +91,7 @@ export function CheckoutFlow() {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
         <div className="max-w-md mx-auto">
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[#98CA3F] flex items-center justify-center glow-green">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center btn-neon-3d">
             <Check className="h-10 w-10 text-[#0A0A0A]" />
           </div>
           <h1 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold text-white mb-4">
@@ -102,7 +102,7 @@ export function CheckoutFlow() {
           </p>
           <Button
             asChild
-            className="rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold px-8 h-12"
+            className="rounded-full text-[#0A0A0A] font-semibold px-8 h-12 btn-neon-3d border-0"
           >
             <Link href="/">Volver al inicio</Link>
           </Button>
@@ -272,7 +272,7 @@ export function CheckoutFlow() {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Envío</span>
-                <span className="text-[#98CA3F]">Gratis</span>
+                <span className="text-neon-green-soft">Gratis</span>
               </div>
             </div>
 
@@ -280,7 +280,7 @@ export function CheckoutFlow() {
 
             <div className="flex justify-between">
               <span className="font-semibold text-white">Total</span>
-              <span className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-[#98CA3F]">
+              <span className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold text-neon-green">
                 {formatPrice(getTotal())}
               </span>
             </div>

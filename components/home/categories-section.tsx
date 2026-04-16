@@ -34,7 +34,7 @@ export function CategoriesSection() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-[#98CA3F] text-sm font-semibold uppercase tracking-wider">
+          <span className="text-neon-green-soft text-sm font-semibold uppercase tracking-wider">
             Encuentra lo tuyo
           </span>
           <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-4xl font-bold text-white mt-2">

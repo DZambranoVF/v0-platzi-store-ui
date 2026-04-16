@@ -119,12 +119,95 @@
   box-shadow: var(--glow-image);
 }
 
+/* Neon 3D Text Effects */
+.text-neon-green {
+  color: #98CA3F;
+  text-shadow: 
+    0 0 5px rgba(152, 202, 63, 0.9),
+    0 0 10px rgba(152, 202, 63, 0.7),
+    0 0 20px rgba(152, 202, 63, 0.5),
+    0 0 40px rgba(152, 202, 63, 0.3),
+    0 0 80px rgba(152, 202, 63, 0.2),
+    0 2px 0 rgba(0, 0, 0, 0.5),
+    0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.text-neon-green-soft {
+  color: #98CA3F;
+  text-shadow: 
+    0 0 5px rgba(152, 202, 63, 0.6),
+    0 0 15px rgba(152, 202, 63, 0.4),
+    0 0 30px rgba(152, 202, 63, 0.2),
+    0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
 .text-glow-green {
   text-shadow: 0 0 10px rgba(152, 202, 63, 0.5), 0 0 20px rgba(152, 202, 63, 0.3);
 }
 
 .text-glow-orange {
   text-shadow: 0 0 10px rgba(255, 107, 44, 0.5), 0 0 20px rgba(255, 107, 44, 0.3);
+}
+
+/* Neon 3D Button Effects */
+.btn-neon-3d {
+  @apply relative overflow-hidden transition-all duration-300;
+  background: linear-gradient(180deg, #a8d64f 0%, #98CA3F 50%, #7ab030 100%);
+  box-shadow: 
+    0 0 10px rgba(152, 202, 63, 0.5),
+    0 0 20px rgba(152, 202, 63, 0.3),
+    0 0 40px rgba(152, 202, 63, 0.2),
+    0 4px 0 #6a9a2a,
+    0 6px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(0);
+}
+
+.btn-neon-3d:hover {
+  box-shadow: 
+    0 0 15px rgba(152, 202, 63, 0.7),
+    0 0 30px rgba(152, 202, 63, 0.5),
+    0 0 60px rgba(152, 202, 63, 0.3),
+    0 2px 0 #6a9a2a,
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(2px);
+}
+
+.btn-neon-3d:active {
+  box-shadow: 
+    0 0 10px rgba(152, 202, 63, 0.6),
+    0 0 20px rgba(152, 202, 63, 0.4),
+    0 1px 0 #6a9a2a,
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+}
+
+/* Small neon badge 3D */
+.badge-neon-3d {
+  background: linear-gradient(180deg, #a8d64f 0%, #98CA3F 100%);
+  box-shadow: 
+    0 0 8px rgba(152, 202, 63, 0.5),
+    0 0 15px rgba(152, 202, 63, 0.3),
+    0 2px 0 #7ab030,
+    0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Quick add button neon */
+.btn-quick-add-neon {
+  background: linear-gradient(180deg, #a8d64f 0%, #98CA3F 100%);
+  box-shadow: 
+    0 0 10px rgba(152, 202, 63, 0.6),
+    0 0 20px rgba(152, 202, 63, 0.4),
+    0 3px 0 #6a9a2a,
+    0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-quick-add-neon:hover {
+  box-shadow: 
+    0 0 15px rgba(152, 202, 63, 0.8),
+    0 0 30px rgba(152, 202, 63, 0.5),
+    0 2px 0 #6a9a2a,
+    0 3px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
 }
 
 /* Premium Card Hover Effect */

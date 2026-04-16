@@ -39,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {product.isNew && (
-              <Badge className="bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F] font-semibold">
+              <Badge className="badge-neon-3d text-[#0A0A0A] hover:bg-[#98CA3F] font-semibold border-0">
                 Nuevo
               </Badge>
             )}
@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Quick Add Button */}
           <button
             onClick={handleAddToCart}
-            className="absolute bottom-3 right-3 w-10 h-10 rounded-full bg-[#98CA3F] text-[#0A0A0A] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:scale-110 glow-green-sm"
+            className="absolute bottom-3 right-3 w-10 h-10 rounded-full btn-quick-add-neon text-[#0A0A0A] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
           >
             <Plus className="h-5 w-5" />
             <span className="sr-only">Agregar al carrito</span>
@@ -85,7 +85,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </h3>
 
           {/* Price */}
-          <p className="mt-1 font-semibold text-[#98CA3F]">
+          <p className="mt-1 font-semibold text-neon-green-soft">
             {formatPrice(product.price)}
           </p>
         </div>

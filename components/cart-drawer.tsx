@@ -18,7 +18,7 @@ export function CartDrawer() {
       <SheetContent side="right" className="bg-[#0A0A0A] border-l border-border w-full sm:max-w-md flex flex-col">
         <SheetHeader className="pb-4">
           <SheetTitle className="font-[family-name:var(--font-space-grotesk)] text-white flex items-center gap-2">
-            <ShoppingBag className="h-5 w-5 text-[#98CA3F]" />
+            <ShoppingBag className="h-5 w-5 text-neon-green-soft" style={{ filter: 'drop-shadow(0 0 4px rgba(152,202,63,0.6))' }} />
             Tu Carrito
           </SheetTitle>
         </SheetHeader>
@@ -36,7 +36,7 @@ export function CartDrawer() {
             </p>
             <Button 
               asChild
-              className="rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold px-8"
+              className="rounded-full text-[#0A0A0A] font-semibold px-8 btn-neon-3d border-0"
               onClick={closeCart}
             >
               <Link href="/catalogo">
@@ -69,7 +69,7 @@ export function CartDrawer() {
                         {item.selectedColor}
                         {item.selectedSize && ` / ${item.selectedSize}`}
                       </p>
-                      <p className="text-sm font-semibold text-[#98CA3F] mt-1">
+                      <p className="text-sm font-semibold text-neon-green-soft mt-1">
                         {formatPrice(item.product.price)}
                       </p>
 
@@ -132,7 +132,7 @@ export function CartDrawer() {
               <div className="space-y-3">
                 <Button 
                   asChild
-                  className="w-full rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold h-12 glow-green-sm"
+                  className="w-full rounded-full text-[#0A0A0A] font-semibold h-12 btn-neon-3d border-0"
                   onClick={closeCart}
                 >
                   <Link href="/checkout">

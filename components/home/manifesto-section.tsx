@@ -11,7 +11,7 @@ export function ManifestoSection() {
             <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-white">
               Aprende.
             </span>
-            <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-[#98CA3F] text-glow-green">
+            <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-neon-green">
               Construye.
             </span>
             <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-[#FF6B2C] text-glow-orange">

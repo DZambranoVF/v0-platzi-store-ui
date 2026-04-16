@@ -49,7 +49,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <ShoppingBag className="h-32 w-32 text-muted-foreground/20" />
             </div>
             {product.isNew && (
-              <div className="absolute top-4 left-4 px-3 py-1.5 bg-[#98CA3F] text-[#0A0A0A] text-sm font-semibold rounded-full">
+              <div className="absolute top-4 left-4 px-3 py-1.5 badge-neon-3d text-[#0A0A0A] text-sm font-semibold rounded-full">
                 Nuevo
               </div>
             )}
@@ -76,7 +76,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {/* Product Info */}
         <div className="flex flex-col">
           {/* Category */}
-          <span className="text-[#98CA3F] text-sm font-semibold uppercase tracking-wider">
+          <span className="text-neon-green-soft text-sm font-semibold uppercase tracking-wider">
             {product.category}
           </span>
 
@@ -86,7 +86,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </h1>
 
           {/* Price */}
-          <p className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#98CA3F] mt-4">
+          <p className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-neon-green mt-4">
             {formatPrice(product.price)}
           </p>
 
@@ -161,7 +161,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Button
               onClick={handleAddToCart}
-              className="flex-1 h-14 rounded-full bg-[#98CA3F] text-[#0A0A0A] hover:bg-[#98CA3F]/90 font-semibold text-base glow-green-sm"
+              className="flex-1 h-14 rounded-full text-[#0A0A0A] font-semibold text-base btn-neon-3d border-0"
             >
               <ShoppingBag className="h-5 w-5 mr-2" />
               Agregar al carrito

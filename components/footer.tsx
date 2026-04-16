@@ -35,9 +35,9 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link 
               href="/" 
-              className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold tracking-tight text-white"
+              className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold tracking-tight"
             >
-              PLATZI<span className="text-[#98CA3F]">STORE</span>
+              <span className="text-white">PLATZI</span><span className="text-neon-green-soft">STORE</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
               La tienda oficial de Platzi. Viste el conocimiento y muestra tu orgullo tech.
@@ -123,7 +123,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Platzi Store. Todos los derechos reservados.
           </p>
           <p className="text-sm text-muted-foreground">
-            Hecho con <span className="text-[#FF2D78]">&hearts;</span> en LATAM
+            Hecho con <span className="text-[#FF6B2C]">&hearts;</span> en LATAM
           </p>
         </div>
       </div>
