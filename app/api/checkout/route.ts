@@ -7,6 +7,9 @@ export async function POST(req: NextRequest) {
   try {
     const { items, shippingData } = await req.json()
 
+    const webhookUrl = `${process.env.NEXT_PUBLIC_URL}/api/webhook`
+    console.log('[v0] Webhook URL configurada:', webhookUrl)
+
     const preference = new Preference(client)
     const result = await preference.create({
       body: {
@@ -34,7 +37,7 @@ export async function POST(req: NextRequest) {
           pending: `${process.env.NEXT_PUBLIC_URL}/gracias?status=pending`,
         },
         auto_return: 'approved',
-        notification_url: `${process.env.NEXT_PUBLIC_URL}/api/webhook`,
+        notification_url: webhookUrl,
         statement_descriptor: 'PLATZI STORE',
       },
     })
