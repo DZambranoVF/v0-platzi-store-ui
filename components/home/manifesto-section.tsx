@@ -7,15 +7,12 @@ export function ManifestoSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Manifesto Text */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-            <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-white">
-              Aprende.
+          <div className="flex flex-col items-center justify-center gap-2">
+            <span className="font-[family-name:var(--font-space-grotesk)] text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-widest uppercase">
+              NUNCA PARES
             </span>
-            <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-neon-green">
-              Construye.
-            </span>
-            <span className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-6xl font-bold text-[#FF6B2C] text-glow-orange">
-              Úsalo.
+            <span className="font-[family-name:var(--font-space-grotesk)] text-4xl sm:text-6xl md:text-7xl font-bold tracking-widest uppercase" style={{ color: '#98CA3F', textShadow: '0 0 30px rgba(152,202,63,0.9), 0 0 60px rgba(152,202,63,0.5), 0 0 90px rgba(152,202,63,0.3)' }}>
+              DE COMPRAR
             </span>
           </div>
 

@@ -86,8 +86,9 @@ export function ContactInfo() {
 
       {/* Manifesto */}
       <div className="p-6 bg-gradient-to-br from-[#98CA3F]/10 to-[#FF2D78]/10 rounded-2xl border border-[#98CA3F]/20">
-        <p className="font-[family-name:var(--font-space-grotesk)] text-lg font-semibold text-white mb-2">
-          Aprende. Construye. Úsalo.
+        <p className="font-[family-name:var(--font-space-grotesk)] text-lg font-bold tracking-widest uppercase mb-2">
+          <span className="text-white">NUNCA PARES </span>
+          <span className="text-[#98CA3F]" style={{ textShadow: '0 0 12px rgba(152,202,63,0.7)' }}>DE COMPRAR</span>
         </p>
         <p className="text-sm text-muted-foreground">
           Cada producto que creamos representa el espíritu de nuestra comunidad: 

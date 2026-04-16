@@ -39,8 +39,9 @@ export function Footer() {
             >
               <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              La tienda oficial de Platzi. Viste el conocimiento y muestra tu orgullo tech.
+            <p className="mt-4 text-sm font-bold tracking-widest uppercase">
+              <span className="text-white">NUNCA PARES </span>
+              <span className="text-neon-green" style={{ textShadow: '0 0 12px rgba(152,202,63,0.7)' }}>DE COMPRAR</span>
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-4 mt-6">

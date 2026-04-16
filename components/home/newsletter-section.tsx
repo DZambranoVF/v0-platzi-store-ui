@@ -37,8 +37,9 @@ export function NewsletterSection() {
           </span>
 
           {/* Title */}
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-4xl font-bold text-white mb-4">
-            Únete a la comunidad
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-4xl font-bold mb-4 tracking-widest uppercase">
+            <span className="text-white">NUNCA PARES </span>
+            <span className="text-neon-green" style={{ textShadow: '0 0 20px rgba(152,202,63,0.8), 0 0 40px rgba(152,202,63,0.4)' }}>DE COMPRAR</span>
           </h2>
 
           {/* Description */}
