@@ -129,19 +129,6 @@ export const products: Product[] = [
   },
   {
     id: '9',
-    name: 'Libreta Platzi',
-    slug: 'libreta-platzi',
-    price: 55000,
-    category: 'oficina',
-    colors: ['Negro'],
-    images: ['/products/libreta-1.jpg', '/products/libreta-2.jpg'],
-    description: 'Libreta A5 de 200 páginas con papel de 100g. Perfecta para tus notas, wireframes y diagramas. Encuadernación cosida.',
-    materials: 'Tapa dura con acabado soft-touch, papel FSC',
-    care: 'Mantener en lugar seco.',
-    isNew: true,
-  },
-  {
-    id: '10',
     name: 'Pad Mouse Platzi',
     slug: 'pad-mouse-platzi',
     price: 95000,
@@ -160,7 +147,7 @@ export const products: Product[] = [
     isNew: true,
   },
   {
-    id: '11',
+    id: '10',
     name: 'Agenda Platzi',
     slug: 'agenda-platzi',
     price: 75000,
