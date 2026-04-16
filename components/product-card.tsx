@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingBag, Plus } from 'lucide-react'
@@ -15,12 +16,21 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem, openCart } = useCartStore()
+  const [selectedColor, setSelectedColor] = useState(product.colors[0])
+
+  const currentImage = product.colorImages?.[selectedColor] ?? product.images?.[0]
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    addItem(product, product.colors[0], product.sizes?.[0])
+    addItem(product, selectedColor, product.sizes?.[0])
     openCart()
+  }
+
+  const handleColorClick = (e: React.MouseEvent, color: string) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setSelectedColor(color)
   }
 
   return (
@@ -31,10 +41,10 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="card-premium rounded-xl overflow-hidden border border-transparent" style={{ boxShadow: '0 0 0 1px rgba(152,202,63,0.12), 0 0 24px rgba(152,202,63,0.08)' }}>
         {/* Image */}
         <div className="relative aspect-square bg-gradient-to-br from-[#181818] to-[#0f0f0f] overflow-hidden" style={{ boxShadow: 'inset 0 0 40px rgba(152,202,63,0.04)' }}>
-          {product.images && product.images[0] ? (
+          {currentImage ? (
             <Image
-              src={product.images[0]}
-              alt={product.name}
+              src={currentImage}
+              alt={`${product.name} - ${selectedColor}`}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -69,10 +79,13 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Colors */}
           <div className="flex items-center gap-1.5 mb-2">
             {product.colors.slice(0, 4).map((color) => (
-              <div
+              <button
                 key={color}
+                onClick={(e) => handleColorClick(e, color)}
+                title={color}
                 className={cn(
-                  'w-3 h-3 rounded-full border border-white/20',
+                  'w-4 h-4 rounded-full border-2 transition-all duration-200 cursor-pointer',
+                  selectedColor === color ? 'border-[#98CA3F] scale-110' : 'border-white/20 hover:border-white/50',
                   color === 'Negro' && 'bg-black',
                   color === 'Blanco' && 'bg-white',
                   color === 'Verde' && 'bg-[#98CA3F]',
@@ -80,7 +93,6 @@ export function ProductCard({ product }: ProductCardProps) {
                   color === 'Rosa' && 'bg-[#FF6B2C]',
                   color === 'Multicolor' && 'bg-gradient-to-r from-[#98CA3F] via-[#FF6B2C] to-purple-500'
                 )}
-                title={color}
               />
             ))}
             {product.colors.length > 4 && (
