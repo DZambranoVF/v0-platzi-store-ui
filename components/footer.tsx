@@ -37,7 +37,7 @@ export function Footer() {
               href="/" 
               className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold tracking-tight"
             >
-              <span className="text-white">PLATZI</span><span className="text-neon-green-soft">STORE</span>
+              <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
               La tienda oficial de Platzi. Viste el conocimiento y muestra tu orgullo tech.

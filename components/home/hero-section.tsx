@@ -3,27 +3,31 @@
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { HeroNodes } from '@/components/hero-nodes'
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Interactive Nodes Background */}
+      <HeroNodes />
+      
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0A0A0A]">
+      <div className="absolute inset-0 bg-[#0A0A0A] -z-10">
         {/* Grid Pattern */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(152, 202, 63, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(152, 202, 63, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(152, 202, 63, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(152, 202, 63, 0.08) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px',
+            backgroundSize: '60px 60px',
           }}
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/30 to-[#0A0A0A]" />
         {/* Glow Effects */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#98CA3F]/10 rounded-full blur-[120px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#98CA3F]/15 rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#FF6B2C]/10 rounded-full blur-[100px]" />
       </div>
 

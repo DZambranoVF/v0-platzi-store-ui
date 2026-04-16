@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/cart-store'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { InteractiveNodes } from '@/components/interactive-nodes'
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -25,16 +24,13 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md" style={{ borderBottom: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0AE6, #0A0A0AE6), linear-gradient(90deg, transparent 0%, rgba(152,202,63,0.35) 30%, rgba(152,202,63,0.35) 70%, transparent 100%)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', borderBottomWidth: '1px', borderBottomStyle: 'solid' }}>
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo with Interactive Nodes */}
+        {/* Logo */}
         <Link 
           href="/" 
-          className="relative font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight transition-all duration-300 flex items-center"
+          className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight transition-colors hover:opacity-80"
         >
-          <div className="relative w-[120px] h-[60px] -ml-4 -my-4">
-            <InteractiveNodes />
-          </div>
-          <span className="relative z-10 -ml-2 text-white">PLATZI</span>
-          <span className="relative z-10 text-neon-green-soft">STORE</span>
+          <span className="text-white">PLATZI</span>
+          <span className="text-neon-green">STORE</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -88,7 +84,7 @@ export function Navbar() {
                   className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <span className="text-white">PLATZI</span><span className="text-neon-green-soft">STORE</span>
+                  <span className="text-white">PLATZI</span><span className="text-neon-green">STORE</span>
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
