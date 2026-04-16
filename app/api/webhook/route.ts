@@ -8,6 +8,9 @@ const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/74vg3cqy7kvmicdhk364f1iqw2ti
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
+    
+    // Log para debug - ver que tipo de notificacion llega
+    console.log('[webhook] Notificacion recibida:', JSON.stringify(body, null, 2))
 
     if (body.type === 'payment') {
       const payment = new Payment(client)
@@ -38,15 +41,22 @@ export async function POST(req: NextRequest) {
       }
 
       try {
-        await fetch(MAKE_WEBHOOK_URL, {
+        const makeResponse = await fetch(MAKE_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(makePayload),
         })
-        console.log('[webhook] Reenviado a Make OK')
+        console.log('[webhook] Reenviado a Make - Status:', makeResponse.status, 'OK:', makeResponse.ok)
+        
+        if (!makeResponse.ok) {
+          const errorText = await makeResponse.text()
+          console.error('[webhook] Make respondio con error:', errorText)
+        }
       } catch (makeErr) {
         console.error('[webhook] Error reenviando a Make:', makeErr)
       }
+    } else {
+      console.log('[webhook] Tipo de notificacion no manejado:', body.type, '- action:', body.action)
     }
   } catch (err) {
     console.error('[webhook] Error procesando notificación:', err)
