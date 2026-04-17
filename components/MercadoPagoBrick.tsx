@@ -36,7 +36,13 @@ export function MercadoPagoBrick({ preferenceId, amount, onSuccess, onError }: M
           mercadoPago: 'all',
         },
       }}
-      onSubmit={async () => {
+      onSubmit={async ({ selectedPaymentMethod, formData }) => {
+        const res = await fetch('/api/process-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ selectedPaymentMethod, formData }),
+        })
+        if (!res.ok) throw new Error('Payment failed')
         onSuccess()
       }}
       onError={onError}
