@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
       body: {
         ...formData,
         payment_method_id: selectedPaymentMethod?.id ?? formData?.payment_method_id,
+        notification_url: `${process.env.NEXT_PUBLIC_URL}/api/webhook`,
       },
     })
 
