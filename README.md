@@ -71,8 +71,8 @@ flowchart TD
     end
 
     subgraph Server ["⚙️ Servidor — Next.js API Routes"]
-        B[/api/brain]
-        V[/api/voice]
+        B["/api/brain"]
+        V["/api/voice"]
     end
 
     subgraph External ["🌐 APIs Externas"]
@@ -261,8 +261,8 @@ flowchart LR
     end
 
     subgraph API ["⚙️ API Routes"]
-        CO[/api/checkout]
-        WH[/api/webhook]
+        CO["/api/checkout"]
+        WH["/api/webhook"]
     end
 
     subgraph MP ["💳 MercadoPago"]
