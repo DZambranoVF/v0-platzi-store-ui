@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN! })
 
-const MAKE_WEBHOOK_URL = 'https://hook.us2.make.com/74vg3cqy7kvmicdhk364f1iqw2tijipa'
+const MAKE_WEBHOOK_URL = process.env.MAKE_WEBHOOK_URL!
 
 export async function POST(req: NextRequest) {
   try {

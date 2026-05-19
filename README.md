@@ -2,11 +2,11 @@
 
 Tienda oficial de Platzi construida con Next.js 15+, con un asistente de ventas conversacional integrado que combina **avatar WebRTC en tiempo real**, **síntesis de voz** e **inteligencia artificial**.
 
-> Proyecto original generado con [v0](https://v0.app/chat/projects/prj_g6uUmJARXfS1XdBE3HlK9Ki0RCGa) · [Abrir en Kiro](https://v0.app/chat/api/kiro/clone/DZambranoVF/v0-platzi-store-ui)
-
 ---
 
 ## Demo
+
+🔗 **[https://v0-platzi-store-ui.vercel.app](https://v0-platzi-store-ui.vercel.app)**
 
 Abre la tienda y haz clic en el botón **VB** en la esquina inferior derecha para interactuar con **VEGA-BOT**, el asistente de ventas.
 
@@ -60,29 +60,38 @@ Abre la tienda y haz clic en el botón **VB** en la esquina inferior derecha par
 
 ## Arquitectura del Asistente
 
-```
-Usuario escribe
-        │
-        ▼
-SalesAssistantPanel.tsx  (React 'use client')
-        │
-        ├──► POST /api/brain  ──► Claude Sonnet 4.5
-        │         (SSE streaming)       │
-        │                               ▼
-        │                        Texto respuesta
-        │                               │
-        ├──► POST /api/voice  ──► ElevenLabs TTS
-        │                               │
-        │                         MP3 bytes stream
-        │                               │
-        ├──► AudioContext.decodeAudioData()
-        │         │
-        │         ▼
-        │    PCM16 @ 16kHz (chunks de 6000 bytes)
-        │         │
-        ├──► Simli.sendAudioData()  ──► Avatar mueve labios
-        │
-        └──► HTMLAudioElement.play()  ──► Usuario escucha
+```mermaid
+flowchart TD
+    U([👤 Usuario escribe]) --> P
+
+    subgraph Browser ["🖥️ Cliente — Browser"]
+        P[SalesAssistantPanel.tsx]
+        AC["AudioContext.decodeAudioData\nMP3 → PCM16 @ 16kHz"]
+        AE["🔊 HTMLAudioElement.play\nUsuario escucha"]
+    end
+
+    subgraph Server ["⚙️ Servidor — Next.js API Routes"]
+        B[/api/brain]
+        V[/api/voice]
+    end
+
+    subgraph External ["🌐 APIs Externas"]
+        CL["Claude Sonnet 4.5\n(Anthropic)"]
+        EL["ElevenLabs TTS\neleven_flash_v2_5"]
+        SIM["🎭 Simli WebRTC\nAvatar mueve labios"]
+    end
+
+    P -->|"POST — SSE streaming"| B
+    B --> CL
+    CL -->|texto respuesta| B
+    B -->|stream| P
+    P -->|POST texto| V
+    V --> EL
+    EL -->|MP3 stream| V
+    V -->|MP3 bytes| P
+    P --> AC
+    AC -->|"PCM16 chunks (6000 bytes)"| SIM
+    AC --> AE
 ```
 
 ---
@@ -167,6 +176,11 @@ NEXT_PUBLIC_URL=https://tu-dominio.com
 | `MP_ACCESS_TOKEN` | [mercadopago.com/developers](https://www.mercadopago.com/developers) → Credenciales → Access Token |
 | `NEXT_PUBLIC_MP_PUBLIC_KEY` | MercadoPago Developers → Credenciales → Public Key |
 | `NEXT_PUBLIC_URL` | URL de tu sitio en producción (e.g. `https://v0-platzi-store-ui.vercel.app`) |
+| `MAKE_WEBHOOK_URL` | [make.com](https://make.com) → tu escenario → webhook URL (opcional — solo si usas automatizaciones post-pago) |
+| `RESEND_API_KEY` | [resend.com](https://resend.com) → API Keys (opcional — solo si usas el formulario de contacto) |
+| `CONTACT_EMAIL` | Email donde llegan los mensajes del formulario de contacto |
+
+> ⚠️ **Nota sobre `NEXT_PUBLIC_SIMLI_API_KEY`**: por diseño de WebRTC, esta key es visible en el bundle del navegador. Para protegerla, configura el **domain allowlist** en el dashboard de Simli ([simli.com](https://simli.com) → Settings → Allowed Domains) para que solo funcione desde tu dominio.
 
 > **Sin las keys de VEGA-BOT**: la tienda funciona normalmente. El asistente mostrará "conectando..." pero no hará crash.  
 > **Sin las keys de MercadoPago**: el checkout llega hasta el paso 3 y muestra error al intentar crear la preferencia de pago.
@@ -239,22 +253,30 @@ O despliega directamente en **Vercel** — agrega las variables de entorno en el
 
 ## Flujo de Pago (MercadoPago)
 
-```
-Paso 3 (Checkout) → POST /api/checkout → MP Preference creada
-        │                                         │
-        │                                   preferenceId
-        │                                         │
-        ▼                                         ▼
-MercadoPagoBrick.tsx ◄─────────────── initMercadoPago()
-  (Payment Brick)                                 │
-        │                                         │
-  Usuario paga ──────────────────────────────────►│
-        │                                         │
-        ▼                                         ▼
-  back_url /gracias?status=approved     /api/webhook (notificación asíncrona)
-        │
-        ▼
-  clearCart() + página de confirmación
+```mermaid
+flowchart LR
+    subgraph Checkout ["🛒 Checkout"]
+        P3["Paso 3 — Pago"]
+        GR["/gracias?status=approved"]
+    end
+
+    subgraph API ["⚙️ API Routes"]
+        CO[/api/checkout]
+        WH[/api/webhook]
+    end
+
+    subgraph MP ["💳 MercadoPago"]
+        BR["Payment Brick\nMercadoPagoBrick.tsx"]
+        MPA["MP API"]
+    end
+
+    P3 -->|POST| CO
+    CO -->|preferenceId| BR
+    BR -->|usuario paga| MPA
+    MPA -->|back_url| GR
+    MPA -.->|"notificación asíncrona"| WH
+    GR -->|clearCart| FIN(["✅ Confirmación"])
+    WH -.->|payload pago| MAKE["⚡ Make.com\nAutomatizaciones"]
 ```
 
 - En **sandbox**: usa las tarjetas de prueba de [MercadoPago Colombia](https://www.mercadopago.com.co/developers/es/docs/checkout-bricks/additional-content/your-integrations/test/cards)
