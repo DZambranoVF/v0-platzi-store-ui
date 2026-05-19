@@ -240,7 +240,7 @@ export function getNewProducts(): Product[] {
 
 export function getProductLandingUrl(slug: string): string {
   const base = process.env.NEXT_PUBLIC_URL ?? 'https://v0-platzi-store-ui.vercel.app'
-  return `${base}/catalogo/${slug}`
+  return `${base}/producto/${slug}`
 }
 
 export function formatPrice(price: number): string {
